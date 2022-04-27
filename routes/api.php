@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -34,3 +36,38 @@ Route::post('/auth', [AuthController::class, 'login']);
 Route::get('/unauthenticated', function(){
     return ['error' => 'Usuário não logado!'];
 })->name('login');
+
+
+
+// file upload route
+Route::middleware('auth:sanctum')->post('/upload', function(Request $request){
+    $array = [
+        'error' => ''
+    ];
+
+    // rules for accepting file extensions
+    $rules = [
+        'foto' => 'required|mimes:jpg,png,jpeg'
+    ];
+
+    $validator = Validator::make($request->only('foto'), $rules);
+
+    if($validator->fails()){
+        $array['error'] = $validator->messages();
+        return $array;
+    }
+
+    if($request->hasFile('foto')){
+        if($request->file('foto')->isValid()){
+            $foto = $request->file('foto')->store('public');
+
+            $url = asset(Storage::url($foto));
+
+            $array['url'] = $url;
+        }
+    }else{
+        $array['error'] = 'Não foi enviado nenhum arquivo';
+    }
+
+    return $array;
+});
