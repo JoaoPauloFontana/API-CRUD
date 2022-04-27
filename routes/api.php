@@ -28,7 +28,7 @@ Route::delete('/todo/{id}', [ApiController::class, 'deleteTodo']);
 
 // Rotas do Cadastro
 Route::post('/user', [AuthController::class, 'create']);
-Route::middleware('auth:sanctum')->get('/auth/logout', [AuthController::class], 'logout');
+Route::middleware('auth:sanctum')->get('/auth/logout', [AuthController::class, 'logout']);
 Route::post('/auth', [AuthController::class, 'login']);
 
 Route::get('/unauthenticated', function(){
