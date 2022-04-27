@@ -69,6 +69,9 @@ class AuthController extends Controller
             'error' => ''
         ];
 
+        $user = $request->user();
+        $user->tokens()->delete();
+
         return $array;
     }
 }
