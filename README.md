@@ -65,11 +65,11 @@ Alternative installation is possible without local dependencies relying on [Dock
 
 Clone the repository
 
-    git clone git@github.com:gothinkster/laravel-realworld-example-app.git
+    git clone git@github.com:Shaiqna/CMS-in-laravel.git
 
 Switch to the repo folder
 
-    cd laravel-realworld-example-app
+    cd CMS-in-laravel
 
 Install all the dependencies using composer
 
