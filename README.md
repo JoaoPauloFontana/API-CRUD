@@ -65,11 +65,11 @@ Alternative installation is possible without local dependencies relying on [Dock
 
 Clone the repository
 
-    git clone git@github.com:Shaiqna/CMS-in-laravel.git
+    git clone git@github.com:Shaiqna/API-CRUD.git
 
 Switch to the repo folder
 
-    cd CMS-in-laravel
+    cd API-CRUD
 
 Install all the dependencies using composer
 
